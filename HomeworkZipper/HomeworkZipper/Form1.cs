@@ -30,7 +30,7 @@ namespace HomeworkZipper
 
         
         /// <summary>
-        /// Populates the TreeView with projects based on the base directory of projects.
+        /// Populates the TreeView with nodes representing solutions based on the base directory of solutions.
         /// </summary>
         private void populateTreeView()
         {
@@ -57,14 +57,14 @@ namespace HomeworkZipper
         }
 
         /// <summary>
-        /// Gets the package name based on an absolute file path and the parent project. Necessary for creating the zip file archive directory structure.
+        /// Gets the project name based on an absolute file path and the parent solution. Necessary for creating the zip file archive directory structure.
         /// </summary>
-        /// <param name="projectName">Example: Homework1</param>
-        /// <param name="fileName">Example: C:\dev\Homework1\Package1\main.cpp</param>
+        /// <param name="solutionName">Example: Homework1</param>
+        /// <param name="fileName">Example: C:\dev\Homework1\Project1\main.cpp</param>
         /// <returns></returns>
-        private string getPackageName(string projectName, string fileName)
+        private string getProjectName(string solutionName, string fileName)
         {
-            int start = fileName.IndexOf(projectName) + projectName.Length + 1;
+            int start = fileName.IndexOf(solutionName) + solutionName.Length + 1;
             return fileName.Substring(start, fileName.LastIndexOf("\\") - start);
         }
 
@@ -76,7 +76,7 @@ namespace HomeworkZipper
         {
             if (treeView1.SelectedNode.Text.Contains(".zip"))
             {
-                MessageBox.Show("Click on a Node with a project name to execute this command.");
+                MessageBox.Show("Click on a Node with a Solution name to execute this command.");
                 return false;
             }
             return true;
@@ -94,7 +94,7 @@ namespace HomeworkZipper
         }
 
         /// <summary>
-        /// Click event for "Zip It". Creates a zip in the base project directory containing all necessary files.
+        /// Click event for "Zip It". Creates a zip in the base Solution directory containing all necessary files.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -102,44 +102,44 @@ namespace HomeworkZipper
         {
             if (!validateZipItClick()) return;
             string dir = treeView1.SelectedNode.Name.ToString();
-            string projectName = treeView1.SelectedNode.Text;
+            string solutionName = treeView1.SelectedNode.Text;
             using (ZipFile zip = new ZipFile())
             {
-                zip.AddFile(dir + "\\" + projectName + ".sln", projectName);
+                zip.AddFile(dir + "\\" + solutionName + ".sln", solutionName);
                 foreach (string file in getListOfImportantFiles(dir))
                 {
-                    zip.AddFile(file, projectName + "\\" + getPackageName(projectName, file));
+                    zip.AddFile(file, solutionName + "\\" + getProjectName(solutionName, file));
                 }
-                zip.Save(getSubmissionZipName(dir, projectName));
+                zip.Save(getSubmissionZipName(dir, solutionName));
             }
             populateTreeView();
             treeView1.Nodes[dir].Expand();
         }
 
         /// <summary>
-        /// Gets a name for a zip file in case a zip file already exists. Increments in the form projectName\projectName_submission_1.zip.
+        /// Gets a name for a zip file in case a zip file already exists. Increments in the form solutionName\solutionName_submission_1.zip.
         /// </summary>
-        /// <param name="dir">Directory of the main project</param>
-        /// <param name="projectName">The name of the project</param>
+        /// <param name="dir">Directory of the main solution</param>
+        /// <param name="solutionName">The name of the solution</param>
         /// <returns></returns>
-        private string getSubmissionZipName(string dir, string projectName)
+        private string getSubmissionZipName(string dir, string solutionName)
         {
             int subNum = 1;
-            string newDir = dir + "\\" + projectName + "_submission_" + subNum + ".zip";
+            string newDir = dir + "\\" + solutionName + "_submission_" + subNum + ".zip";
             while (File.Exists(newDir))
             {
                 subNum++;
-                newDir = dir + "\\" + projectName + "_submission_" + subNum + ".zip";
+                newDir = dir + "\\" + solutionName + "_submission_" + subNum + ".zip";
             }
             return newDir;
         }
 
         /// <summary>
-        /// Gets the list of important files in all packages (excluding .sln).
+        /// Gets the list of important files in all projects (excluding .sln).
         /// Directories that are Release, Debug, or ipch will not be added.
         /// Files that don't end in .filter, or .user, or the ReadMe.txt file will not be included.
         /// </summary>
-        /// <param name="dir">The Base directory of the project</param>
+        /// <param name="dir">The Base directory of the solution</param>
         /// <returns></returns>
         private List<string> getListOfImportantFiles(string dir)
         {
@@ -171,14 +171,14 @@ namespace HomeworkZipper
         }
 
         /// <summary>
-        /// Starts VS 2010 given the project name for the .sln file (assumes extractToTestDir() has already been called).
+        /// Starts VS 2010 given the solution name for the .sln file (assumes extractToTestDir() has already been called).
         /// VS 2010 will automatically exit when the program exits.
         /// </summary>
-        /// <param name="projectName">Name of the project for the .sln file.</param>
-        private void runWithVS2010(string projectName)
+        /// <param name="solutionName">Name of the solution for the .sln file.</param>
+        private void runWithVS2010(string solutionName)
         {
             if (!Directory.Exists(TEST_DIR)) return;
-            string sln = "\"" + TEST_DIR + "\\" + projectName + "\\" + projectName + ".sln\"";
+            string sln = "\"" + TEST_DIR + "\\" + solutionName + "\\" + solutionName + ".sln\"";
             Process process = new Process();
             process.StartInfo.FileName = VS_2010_LOCATION;
             process.StartInfo.Arguments = "/runexit " + sln;

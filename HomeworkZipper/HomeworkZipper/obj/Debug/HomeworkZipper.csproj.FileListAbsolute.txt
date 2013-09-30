@@ -8,3 +8,12 @@ C:\Users\Will Conrardy\Documents\Visual Studio 2012\Projects\HomeworkZipper\Home
 C:\Users\Will Conrardy\Documents\Visual Studio 2012\Projects\HomeworkZipper\HomeworkZipper\obj\Debug\HomeworkZipper.csproj.GenerateResource.Cache
 C:\Users\Will Conrardy\Documents\Visual Studio 2012\Projects\HomeworkZipper\HomeworkZipper\obj\Debug\HomeworkZipper.exe
 C:\Users\Will Conrardy\Documents\Visual Studio 2012\Projects\HomeworkZipper\HomeworkZipper\obj\Debug\HomeworkZipper.pdb
+C:\Users\Will Conrardy\Documents\GitHub\HomeworkZipper\HomeworkZipper\HomeworkZipper\bin\Debug\HomeworkZipper.exe.config
+C:\Users\Will Conrardy\Documents\GitHub\HomeworkZipper\HomeworkZipper\HomeworkZipper\obj\Debug\HomeworkZipper.exe
+C:\Users\Will Conrardy\Documents\GitHub\HomeworkZipper\HomeworkZipper\HomeworkZipper\obj\Debug\HomeworkZipper.pdb
+C:\Users\Will Conrardy\Documents\GitHub\HomeworkZipper\HomeworkZipper\HomeworkZipper\bin\Debug\HomeworkZipper.exe
+C:\Users\Will Conrardy\Documents\GitHub\HomeworkZipper\HomeworkZipper\HomeworkZipper\bin\Debug\HomeworkZipper.pdb
+C:\Users\Will Conrardy\Documents\GitHub\HomeworkZipper\HomeworkZipper\HomeworkZipper\obj\Debug\HomeworkZipper.csprojResolveAssemblyReference.cache
+C:\Users\Will Conrardy\Documents\GitHub\HomeworkZipper\HomeworkZipper\HomeworkZipper\obj\Debug\HomeworkZipper.Form1.resources
+C:\Users\Will Conrardy\Documents\GitHub\HomeworkZipper\HomeworkZipper\HomeworkZipper\obj\Debug\HomeworkZipper.Properties.Resources.resources
+C:\Users\Will Conrardy\Documents\GitHub\HomeworkZipper\HomeworkZipper\HomeworkZipper\obj\Debug\HomeworkZipper.csproj.GenerateResource.Cache
